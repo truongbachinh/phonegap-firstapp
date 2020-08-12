@@ -68,8 +68,13 @@
       </div>
       <!-- /header -->
       <div data-role="content">
-        <label for="">Input</label>
-        <input type="text" name="" id="" />
+        <form onsubmit="return checkData()">
+          <label for="txtName" id="nameError" style="display: none;"
+            >Input</label
+          >
+          <input type="text" name="txtName" id="txtName" />
+          <input type="submit" value="Submit" />
+        </form>
       </div>
       <div data-role="footer">
         <div data-role="navbar">
@@ -87,6 +92,19 @@
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript">
       app.initialize();
+      function checkData() {
+        var name = $('#txtName').val();
+        if (name.length < 4) {
+          $('#nameError').html('name must greter than 3 characters!');
+          $('#nameError').css('display', 'block');
+
+          return false;
+        } else {
+          window.location.replace('index.html?name=' + name);
+          // document.getElementById('txtname').innerHTML =
+          //   'aaaa' + window.location.hostname;
+        }
+      }
     </script>
   </body>
 </html>
